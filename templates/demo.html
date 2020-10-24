@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <title>Демо классификации</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <style>
+        body,h1 {font-family: "Raleway", sans-serif}
+        body, html {height: 100%}
+    </style>
+    <body>
+        <a href ="/"><h2 class="w3-text-blue">На главную</h2></a>
+        <div class="w3-container w3-card-4">
+            <p>
+                <img src={{ url | safe }}>
+            </p>
+            <p><b>Predicted</b></p>
+            <p>
+                {{ pred | safe }}
+            </p>
+        </div>
+    </body>
+</html>
