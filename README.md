@@ -11,10 +11,18 @@ How to start with our app
 This is an example of how to list things you need to use the software and how to install them.
 * Python >= 3.6
 ```sh
-$ sudo apt update
-$ sudo apt install python3.6
+$ sudo apt-get install software-properties-common
+$ sudo add-apt-repository ppa:deadsnakes/ppa 
+$ sudo apt-get update
+$ sudo apt-get install python3.6
 $ sudo apt install python3-pip
 ```
+  
+* Git
+```sh
+$ sudo apt install git-all
+```
+
 
 ### Installation
 
