@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 from flask import Flask, render_template
-import numpy as np
-import torch
 from utils.img_inference import Inference
 
 
@@ -9,7 +7,7 @@ app = Flask(__name__)
 
 app.config['model'] = Inference()
 
-from views import demo
+from views import demo_url, demo_upload
 
 @app.route('/')
 def index():

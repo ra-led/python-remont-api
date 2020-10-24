@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <title>REMONT</title>
+    <title>Демо классификации</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -11,21 +11,13 @@
     </style>
     <body>
         <div class="w3-content">
-            <br>
-            <header class="w3-container w3-blue w3-section">
-              <h1>Сервис классификации качества ремонта</h1>
-            </header>
+            <a href ="/"><h2 class="w3-text-blue">На главную</h2></a>
             <div class="w3-container w3-card-4">
-                <h2 class="w3-text-blue">Классификация по URL изображения</h2>
-                <form class="w3-container" method="POST" action="/demo_url">
-                    <p> Укажите URI изображения jpg </p>
-                    <p>
-                        <input type="text" name="url" value=""><br>
-                    </p>
-                    <button class="w3-btn w3-blue" type="submit">Классифицировать</button>
-                </form>
+                <p>
+                    <img src="data:;base64,{{ image }}" height="300">
+                </p>
+                <h3>Predicted: <b>{{ pred | safe }}</b></h3>
                 <hr>
-                <h2 class="w3-text-blue">Загрузка изображения для классификации</h2>
                 <form class="w3-container" method="POST" enctype="multipart/form-data" action="/demo_upload">
                     <p> Выберите изображение jpg </p>
                     <p>

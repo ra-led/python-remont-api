@@ -1,7 +1,6 @@
 import io
-import torch
 import requests
-
+import torch
 import torchvision.transforms as transforms
 from PIL import Image
 
@@ -23,20 +22,25 @@ class Inference():
         return my_transforms(image).unsqueeze(0)
     
     
-    def predict(self, url=None, file_path=None):
+    def predict(self, url=None, file_path=None, file_bytes=None):
         # если задан url
         if url:
             r = requests.get(url, timeout=4.0)
             if r.status_code != requests.codes.ok:
                 assert False, 'Status code error: {}.'.format(r.status_code)
-            tensor = self.transform_image(image_bytes=r.content)
+            image_bytes = r.content
         # если задан локальный путь
         elif file_path:
             with open(file_path, 'rb') as f:
                 image_bytes = f.read()
-                tensor = self.transform_image(image_bytes=image_bytes)
+        # если указан файл в бинарном формате
+        elif file_bytes:
+            image_bytes=file_bytes
         else:
-            assert False, 'Set url or file path'
+            assert False, 'Set url, file_path path or image_bytes'
+            
+        # препроцессинг изображения
+        tensor = self.transform_image(image_bytes=image_bytes)
         
         with torch.no_grad():
             outputs = self.model (tensor)
