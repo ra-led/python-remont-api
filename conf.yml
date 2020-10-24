@@ -1,4 +1,5 @@
 port: 5005
+model_name: resnet18_baseline_cpu.torch
 labels:
 - Bez otdelki
 - Luks

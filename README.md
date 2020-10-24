@@ -20,19 +20,23 @@ $ sudo apt install python3-pip
 
 1. Clone the repo
 ```sh
-git clone https://github.com/ra-led/python-remont-api.git
-cd python-remont-api
+$ git clone https://github.com/ra-led/python-remont-api.git
+$ cd python-remont-api
 ```
 2. Install Python packages
 ```sh
-pip3 install -r requirements.txt
+$ pip3 install -r requirements.txt
+```
+3. Download pre-trained weights
+```sh
+$ gdown https://drive.google.com/uc?id=1pewnHlXGvPEd0h6yzueIpKq8hlnmCU-E
 ```
 
 ### Start server
 
 Start server with Flask default WSGI
 ```sh
-python3 run.py
+$ python3 run.py
 ```
 Server will start on port 5005, to change port set it in `conf.yml`
 

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os
 from flask import Flask, render_template
 from utils.img_inference import Inference
 from conf import CFG
@@ -7,7 +8,7 @@ app = Flask(__name__)
 
 app.config['model'] = Inference(
     labels=CFG['labels'],
-    model_path='models/resnet18_baseline_cpu.torch'
+    model_path=os.path.join('models', CFG['model_name'])
 )
 
 from views import demo_url, demo_upload
