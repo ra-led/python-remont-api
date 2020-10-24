@@ -7,6 +7,11 @@ from PIL import Image
 
 
 class Inference():
+    def __init__(self, model_path='models/resnet18_baseline_cpu.torch'):
+        self.model_path = model_path
+        self.model = torch.load(model_path)
+        self.labels = ['bez_otdelki', 'luks', 'standart', 'trebuetsya_kosmetika']
+        
     def transform_image(self, image_bytes):
         my_transforms = transforms.Compose([
             transforms.Resize(256),
@@ -18,24 +23,24 @@ class Inference():
         return my_transforms(image).unsqueeze(0)
     
     
-    def predict(url):
-        # url = 'https://cdn-p.cian.site/images/8/513/557/kvartira-moskva-ulica-trehgornyy-val-755315843-4.jpg'
-    #    with open(url, 'rb') as f:
-    #        image_bytes = f.read()
-    #        tensor = transform_image(image_bytes=image_bytes)
-    #        print('SHAPE', tensor.shape)
-            
-        r = requests.get(url, timeout=4.0)
-        if r.status_code != requests.codes.ok:
-            assert False, 'Status code error: {}.'.format(r.status_code)
-    
-        with Image.open(r.content) as im:
-            
-            tensor = transform_image(self, image_bytes=im)
+    def predict(self, url=None, file_path=None):
+        # если задан url
+        if url:
+            r = requests.get(url, timeout=4.0)
+            if r.status_code != requests.codes.ok:
+                assert False, 'Status code error: {}.'.format(r.status_code)
+            tensor = self.transform_image(image_bytes=r.content)
+        # если задан локальный путь
+        elif file_path:
+            with open(file_path, 'rb') as f:
+                image_bytes = f.read()
+                tensor = self.transform_image(image_bytes=image_bytes)
+        else:
+            assert False, 'Set url or file path'
         
         with torch.no_grad():
-            outputs = app.config['model'](tensor)
+            outputs = self.model (tensor)
             _, preds = torch.max(outputs, 1)
             
-        class_name = app.config['labels'][preds.item()]
+        return self.labels[preds.item()]
         

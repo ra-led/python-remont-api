@@ -7,8 +7,10 @@ import json
 def predict_image():
     params = request.form.to_dict()
     
+    prediction = app.config['model'].predict(url=params['url'])
+    
     return render_template(
         'demo.html',
         url=params['url'],
-        pred='Class'
+        pred=prediction
         )

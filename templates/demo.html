@@ -13,12 +13,17 @@
         <a href ="/"><h2 class="w3-text-blue">На главную</h2></a>
         <div class="w3-container w3-card-4">
             <p>
-                <img src={{ url | safe }}>
+                <img src={{ url | safe }} height="300">
             </p>
-            <p><b>Predicted</b></p>
-            <p>
-                {{ pred | safe }}
-            </p>
+            <h3>Predicted: <b>{{ pred | safe }}</b></h3>
+            <hr>
+            <form class="w3-container" method="POST" action="/demo">
+                <p> URI изображения jpg </p>
+                <p>
+                    <input type="text" name="url" value=""><br>
+                </p>
+                <button class="w3-btn w3-blue" type="submit">Классифицировать</button>
+            </form>
         </div>
     </body>
 </html>

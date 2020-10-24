@@ -6,7 +6,8 @@ from utils.img_inference import Inference
 
 
 app = Flask(__name__)
-app.config['inference'] = Inference = 
+
+app.config['model'] = Inference()
 
 from views import demo
 
