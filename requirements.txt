@@ -4,4 +4,4 @@ torch
 torchvision
 Pillow
 requests==2.22.0
-gdown==3.12.2
+gdown

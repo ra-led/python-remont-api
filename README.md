@@ -36,8 +36,20 @@ $ cd python-remont-api
 $ pip3 install -r requirements.txt
 ```
 3. Download pre-trained weights
+Create model dir and start Python
 ```sh
-$ gdown https://drive.google.com/uc?id=1pewnHlXGvPEd0h6yzueIpKq8hlnmCU-E
+$ mkdir models
+$ python3
+```
+In Python console run
+```Python
+import gdown
+
+url = 'https://drive.google.com/uc?id=1pewnHlXGvPEd0h6yzueIpKq8hlnmCU-E'
+output = 'models/resnet18_baseline_cpu.torch'
+gdown.download(url, output, quiet=False)
+
+quit()
 ```
 
 ### Start server
@@ -49,6 +61,8 @@ $ python3 run.py
 Server will start on port 5005, to change port set it in `conf.yml`
 
 Alternativly, you can use [Gunicorn](https://gunicorn.org/) WSGI
+
+Launch `http://{your_host_adres}:5005/`
 
 <!-- USAGE EXAMPLES -->
 ## Usage
