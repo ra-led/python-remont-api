@@ -6,10 +6,10 @@ from PIL import Image
 
 
 class Inference():
-    def __init__(self, model_path='models/resnet18_baseline_cpu.torch'):
+    def __init__(self, labels, model_path):
         self.model_path = model_path
         self.model = torch.load(model_path)
-        self.labels = ['bez_otdelki', 'luks', 'standart', 'trebuetsya_kosmetika']
+        self.labels = labels
         
     def transform_image(self, image_bytes):
         my_transforms = transforms.Compose([
