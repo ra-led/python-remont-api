@@ -67,4 +67,20 @@ Launch `http://{your_host_adres}:5005/`
 <!-- USAGE EXAMPLES -->
 ## Usage
 
+- Interior class quality prediction
 
+#### /predict_class POST
+Params
+```
+file - image file for classification
+```
+  
+Response JSON
+```
+{"predicted": "Bez otdelki" | "Luks" | "Standart" | "Trebuet kosmetiki" }
+```
+  
+Example
+```sh
+curl -X POST -F 'file=@path/to/pictures/picture.jpg' http://127.0.0.1:5005/predict_class
+```

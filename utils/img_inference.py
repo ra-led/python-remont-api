@@ -22,7 +22,7 @@ class Inference():
         return my_transforms(image).unsqueeze(0)
     
     
-    def predict(self, url=None, file_path=None, file_bytes=None):
+    def predict(self, url=None, file_path=None, file_bytes=None, features=False):
         # если задан url
         if url:
             r = requests.get(url, timeout=4.0)
@@ -43,7 +43,9 @@ class Inference():
         tensor = self.transform_image(image_bytes=image_bytes)
         
         with torch.no_grad():
-            outputs = self.model (tensor)
+            outputs = self.model(tensor)
+            if features:
+                return outputs.cpu().numpy()
             _, preds = torch.max(outputs, 1)
             
         return self.labels[preds.item()]

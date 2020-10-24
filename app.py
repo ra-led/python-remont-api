@@ -11,7 +11,7 @@ app.config['model'] = Inference(
     model_path=os.path.join('models', CFG['model_name'])
 )
 
-from views import demo_url, demo_upload
+from views import demo_url, demo_upload, predict_class
 
 
 @app.route('/')
